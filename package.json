@@ -1,0 +1,90 @@
+{
+  "name": "versioned-vue-ssr",
+  "version": "0.1.0",
+  "description": "server side render vue component by vue version",
+  "author": "yiminghe@gmail.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/yiminghe/versioned-vue-ssr.git"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "__tests__/**/*"
+          ]
+        }
+      ],
+      [
+        "@pika/plugin-build-node",
+        {
+          "sourcemap": false
+        }
+      ],
+      [
+        "@pika/plugin-copy-assets",
+        {
+          "files": [
+            "vue-version"
+          ]
+        }
+      ],
+      [
+        "@pika/plugin-build-types"
+      ],
+      [
+        "pika-plugin-clean-dist-src"
+      ]
+    ]
+  },
+  "jest": {
+    "testRegex": "/__tests__/.*\\.spec\\.[jt]sx?$",
+    "collectCoverageFrom": [
+      "src/*"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.3.3",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.0",
+    "@pika/plugin-build-types": "^0.6.0",
+    "@pika/plugin-copy-assets": "^0.6.0",
+    "@pika/plugin-standard-pkg": "^0.6.0",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "babel-jest": "^24.8.0",
+    "coveralls": "^2.13.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^7.2.0",
+    "np": "^5.0.3",
+    "pika-plugin-clean-dist-src": "^0.1.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.11.1"
+  },
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "prettier": "prettier --write \"{src,__tests__}/**/*.{js,ts}\"",
+    "pub": " np --no-publish --no-release-draft --no-cleanup && npm run build &&  npm publish pkg",
+    "build": "pack build",
+    "test": "jest",
+    "coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "dependencies": {
+    "he": "^1.2.0",
+    "lodash.template": "^4.5.0",
+    "object-assign": "^4.1.1",
+    "serialize-javascript": "^2.1.0"
+  },
+  "lint-staged": {
+    "*.{tsx,js,jsx,ts}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}
