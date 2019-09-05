@@ -34,12 +34,11 @@ expect(
         var x=(function(){ .... })();
       `
   })
-).toMatchInlineSnapshot(`"<div data-reactroot=\\"\\">my</div>"`);
+).toMatchInlineSnapshot(`"<div data-server-rendered=\"true\">
+                                 my
+                               </div>"`);
 ```
 
 ### methods
 
 - renderComponentCodeToString
-- renderComponentCodeToStaticMarkup
-- renderComponentCodeToNodeStream
-- renderComponentCodeToStaticNodeStream
