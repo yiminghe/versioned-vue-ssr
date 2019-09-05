@@ -6,25 +6,10 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        loose: true,
-        modules: false,
+        targets: {
+          node: true,
+        },
       },
     ],
   ],
-
-  env: {
-    test: {
-      presets: [
-        ['@babel/preset-typescript'],
-        [
-          '@babel/preset-env',
-          {
-            targets: {
-              node: true,
-            },
-          },
-        ],
-      ],
-    },
-  },
 };
