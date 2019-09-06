@@ -24,7 +24,7 @@ server side render vue component by vue version
 ```js
 const render = require("versioned-vue-component");
 expect(
-  render.renderComponentCodeToString({
+  await render.renderComponentCodeToString({
     props: {
       title: "my"
     },
